@@ -155,6 +155,46 @@ font-size: 18px;
 #yes:hover {
 border: 1px solid black;
 }
+#link {
+position: absolute;
+top: 200px;
+left: 48%;
+width: 10px;
+z-index: -1;
+color: white;
+border: none;
+}
+#green {
+position: fixed;
+top: 0px;
+left: 30%;
+width: 40%;
+height: 50px;
+border-radius: 5px;
+color: black;
+font-family: arial;
+background: lightgreen;
+user-select: none;
+visibility: hidden;
+z-index: 5;
+}
+#green:hover {
+animation-name: wide;
+animation-duration: 0.9s;
+animation-iteration-count: 1;
+border: 1px solid green;
+}
+@keyframes wide {
+ 
+  0% {border: 1px solid lightgreen;}
+  100%   {border: 1px solid green;}
+
+}
+#green-p {
+position: absolute;
+text-align: center;
+width: 100%;
+}
 </style>
 </head>
 <body id="body">
@@ -168,7 +208,7 @@ tonality
 	<canvas id="canvas" width="640" height="480"></canvas>
 </p>
 
-<button id="share" title="Share this website" onclick="share()"><span class="material-icons">
+<button id="share" title="Share this website" onclick="share(); shareGame(); setTimeout(exito, 2500)"><span class="material-icons">
 share
 </span></button>
 <div id="div">
