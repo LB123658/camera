@@ -1,9 +1,188 @@
-<video id="video" width="640" height="480" autoplay></video>
-	<button id="snap">Take Photo</button>
-    <button id="invert" onclick="filter()">Use filter</button>
-	<canvas id="canvas" width="640" height="480"></canvas>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Camera 📷</title>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
+#body {
+pointer-events: none;
+opacity: 0.7;
+}
+#center {
+position: absolute;
+top: 20px;
+left: 5%;
+width: 90%;
+text-align: center;
+}
+#snap {
+position: absolute;
+top: 420px;
+height: 50px;
+width: 50px;
+right: 51%;
+z-index: 1;
+border: 2px solid white;
+border-radius: 50%;
+background: transparent;
+color: white;
+cursor: pointer;
+}
+#invert {
+position: absolute;
+top: 420px;
+height: 50px;
+width: 50px;
+left: 51%;
+z-index: 1;
+border: 2px solid white;
+border-radius: 50%;
+background: transparent;
+color: white;
+cursor: pointer;
+}
+#snap:hover {
+opacity: 0.7;
+}
+#invert:hover {
+opacity: 0.7;
+}
+#video {
+border-radius: 10px;
+}
+#canvas {
+border-radius: 10px;
+transition: transform .2s;
+z-index: 2;
+}
+#canvas:hover {
+transform: scale(1.1);
+}
+#share {
+position: absolute;
+top: 40px;
+height: 50px;
+width: 50px;
+left: 40px;
+z-index: 1;
+border: 2px solid black;
+border-radius: 50%;
+background: transparent;
+color: black;
+cursor: pointer;
+}
+#share:hover {
+opacity: 0.7;
+}
+#div {
+position: fixed;
+top: 30%;
+left: 30%;
+height: 40%;
+width: 40%;
+border-radius: 10px;
+z-index: 3;
+background: yellow;
+visibility: hidden;
+}
+#email {
+position: absolute;
+top: 30%;
+left: 5%;
+width: 90%;
+height: 40px;
+border: 1px solid black;
+border-radius: 10px;
+}
+#close {
+position: absolute;
+top: 0px;
+right: 0px;
+color: black;
+border: none;
+background: transparent;
+cursor: pointer;
+}
+#alert {
+position: fixed;
+top: 0px;
+left: 30%;
+height: 25%;
+width: 40%;
+border-radius: 10px;
+z-index: 3;
+background: yellow;
+visibility: visible;
+pointer-events: auto;
+opacity: 1.0;
+}
 
-	<script>
+#alert-p {
+position: absolute;
+top: 20px;
+left: 10%;
+width: 80%;
+font-family: arial;
+font-size: 18px;
+}
+#yes {
+position: absolute;
+bottom: 20px;
+left: 51%;
+width: 50px;
+height: 30px;
+border: none;
+border-radius: 8px;
+color: black;
+background: white;
+cursor: pointer;
+font-size: 18px;
+}
+#no {
+position: absolute;
+bottom: 20px;
+right: 51%;
+width: 50px;
+height: 30px;
+border: none;
+border-radius: 8px;
+color: black;
+background: white;
+cursor: pointer;
+font-size: 18px;
+}
+#yes:hover {
+border: 1px solid black;
+}
+</style>
+</head>
+<body id="body">
+<p id="center">
+<video id="video" width="640" height="480" autoplay></video>
+	<button id="snap" title="Take photo"><span class="material-icons">camera
+</span></button>
+    <button id="invert" onclick="filter()" title="Apply inverted filter"><span class="material-icons">
+tonality
+</span></button>
+	<canvas id="canvas" width="640" height="480"></canvas>
+</p>
+
+<button id="share" title="Share this website" onclick="share()"><span class="material-icons">
+share
+</span></button>
+<div id="div">
+<form action="" id="form" target="_blank">
+<input type="text" placeholder="Enter email address" id="email" onkeyup="address()">
+</form>
+<button id="close" onclick="closeDiv()"><span class="material-icons">cancel</span></button>
+</div>
+
+<div id="alert">
+<p id="alert-p">This website needs access to your camera.</p>
+<button id="yes" onclick="confirm()">Ok</button>
+<button id="no" onclick="cancel()">No</button>
+</div>
+<script>
 
 		// Put event listeners into place
 		window.addEventListener("DOMContentLoaded", function() {
@@ -50,6 +229,37 @@
 		}, false);
 
 function filter() {
-document.getElementById("canvas").style.filter = "invert(100%";
+  var x = document.getElementById("video");
+  var y = document.getElementById("canvas");
+  if (x.style.filter === "none") {
+    x.style.filter = "invert(100%)";
+    y.style.filter = "invert(100%)";
+  } else {
+    x.style.filter = "none";
+    y.style.filter = "none";
+  }
 }
-	</script>
+
+function share() {
+document.getElementById("div").style.visibility = "visible";
+}
+function closeDiv() {
+document.getElementById("div").style.visibility = "hidden";
+}
+function address() {
+var email = document.getElementById("email");
+document.getElementById("form").action = "mailto:" + email.value;
+}
+function cancel() {
+location.replace("about:blank");
+}
+function confirm() {
+document.getElementById("alert").style.visibility = "hidden";
+document.getElementById("body").style.opacity = "1.0";
+document.getElementById("body").style.pointerEvents = "auto";
+}
+
+</script>
+
+</body>
+</html>
