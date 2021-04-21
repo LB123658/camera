@@ -73,3 +73,13 @@ document.getElementById("alert").style.visibility = "hidden";
 document.getElementById("body").style.opacity = "1.0";
 document.getElementById("body").style.pointerEvents = "auto";
 }
+function shareGame() {
+  var copyText = document.getElementById("link");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999)
+  document.execCommand("copy");
+document.getElementById("green").style.visibility = "visible";
+}  
+function exito() {
+document.getElementById("green").style.visibility = "hidden";
+}
