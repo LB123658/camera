@@ -1,4 +1,3 @@
-
 		// Put event listeners into place
 		window.addEventListener("DOMContentLoaded", function() {
 			// Grab elements, create settings, etc.
@@ -63,7 +62,7 @@ document.getElementById("div").style.visibility = "hidden";
 }
 function address() {
 var email = document.getElementById("email");
-document.getElementById("form").action = "mailto:" + email.value + "?subject=Try%20this%20online%20camera%20for%20free&body=Try out this amazing free online camera with filters at https://lb123658.github.io/camera";
+document.getElementById("sender").href = "mailto:" + email.value + "?subject=Try%20this%20online%20camera%20for%20free&body=Try out this amazing free online camera with filters at https://lb123658.github.io/camera";
 }
 function cancel() {
 location.replace("about:blank");
