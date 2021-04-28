@@ -82,6 +82,3 @@ document.getElementById("green").style.visibility = "visible";
 function exito() {
 document.getElementById("green").style.visibility = "hidden";
 }
-function print() {
-	print(window.location);
-}
