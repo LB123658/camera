@@ -1,4 +1,4 @@
-ar staticCacheName = "camera";
+var staticCacheName = "camera";
 
 self.addEventListener("install", function (e) {
 e.waitUntil(
